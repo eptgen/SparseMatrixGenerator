@@ -39,6 +39,10 @@ def gen_elliptical_square(h, order):
 				ai.append(imap(i, j))
 				aj.append(imap(i, j + 1))
 				av.append(h[1]**-2)
+				ai.append(imap(i, j))
+				aj.append(imap(i, j))
+				av.append(0)
+				middle = len(av) - 1
 				for k in range(2):
 					offcenter = 0
 					if inds[k] < order / 2 - 1:
@@ -48,7 +52,18 @@ def gen_elliptical_square(h, order):
 					weights = finite_diff(order, offcenter)
 					for l in range(len(weights)):
 						weight = weights[l]
-						
+						thing_to_add = weight * h[k] ** -2
+						offset = l - order / 2 - 1 - offcenter
+						if offset == 0
+							av[middle] += thing_to_add
+						elif k == 0:
+							ai.append(imap(i, j))
+							aj.append(imap(i + offset, j))
+						elif k == 1:
+							ai.append(imap(i, j))
+							aj.append(imap(i, j + offset))
+							av.append(thing_to_add)
+							
 				
 	#for i in range(m + 1):
 	#	result.set(imap(m + 1, i), imap(m + 1, i), 1)
